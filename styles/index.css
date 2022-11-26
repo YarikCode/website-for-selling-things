@@ -1,0 +1,192 @@
+@font-face {
+    font-family: Inter-Light;
+    src: url("../fonts/Inter-Light.ttf");
+}
+
+@font-face {
+    font-family: Inter-Bold;
+    src: url("../fonts/Inter-Bold.ttf");
+}
+
+@font-face {
+    font-family: Inter-Medium;
+    src: url("../fonts/Inter-Medium.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body{
+    position: relative;
+    z-index: 1;
+}
+
+.dark_div{
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(41, 41, 41);
+    padding: 10px 150px 10px 150px;
+}
+
+.login_href{
+    font-family: Inter-Light;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.add_btn{
+    font-family: Inter-Light;
+    color: white;
+    font-size: 14px;
+    background-color: rgb(0, 170, 255);
+    padding: 7px 18px 7px 18px;
+    border: none;
+    border-radius: 3px;
+    margin-left: 10px;
+    transition: background-color 0.5s;
+}
+
+.add_btn:hover{
+    background-color: rgb(0, 114, 172);
+}
+
+.ads_container{
+    padding: 30px 150px 30px 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ad_div{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.ad_image{
+    width: 300px;
+    margin-right: 10px;
+}
+
+.ad_title{
+    font-family: Inter-Bold;
+    color: rgb(0, 170, 255);
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.ad_description{
+    margin-top: 10px;
+    font-family: Inter-Light;
+}
+
+.ad_author{
+    margin-top: 10px;
+    font-family: Inter-Light;
+}
+
+.ad_price{
+    margin-top: 10px;
+    font-family: Inter-Bold;
+}
+
+.ad_title:hover{
+    color: rgb(0, 114, 172);
+}
+
+.form{
+    display: block;
+    position: absolute;
+    z-index: 99999999;
+    background-color: white;
+    height: auto;
+    width: 400px;
+    display: none;
+    align-items: stretch;
+    flex-direction: column;
+    padding: 20px 40px 25px 40px;
+}
+
+.form_input{
+    width: 100%;
+    height: 40px;
+}
+
+.input_name{
+    font-family: Inter-Light;
+}
+
+.form_title{
+    font-family: Inter-Medium;
+    margin-bottom: 15px;
+}
+
+.form_buttons{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.form_button{
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background-color: rgb(0, 170, 255);
+    font-family: Inter-Bold;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.buttons_text{
+    text-align: center;
+    font-family: Inter-Light;
+}
+
+.buttons_text{
+    padding: 5px;
+}
+
+.form_button:hover{
+    background-color: rgb(0, 114, 172);
+}
+
+.close_form_btn{
+    height: 40px;
+    width: 40px;
+    border-radius: 3px;
+    background-image: url(../img/close_image.png);
+    background-size: 100%;
+    position: absolute;
+    top: 0;
+    left: 410px;
+    transition: box-shadow 0.3s;
+}
+
+.close_form_btn:hover{
+    box-shadow: 0 0 5px 2px;
+}
+
+.form_input{
+    outline: none;
+}
+
+.form_input{
+    font-family: Inter-Light;
+    font-size: 16px;
+}

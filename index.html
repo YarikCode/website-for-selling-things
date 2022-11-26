@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header_hrefs">
+            <a href="/" class="login_href">Вход и регистрация</a>
+            <a href="/" class="add_href">
+                <button class="add_btn">Добавить объявление</button>
+            </a>
+        </div>
+    </header>
+    <div class="ads_container">
+        <div class="ad_div">
+            <img src="./server/images/avto.jpeg" class="ad_image">
+            <div class="ad_text_div">
+                <a href="/" class="ad_title">Автомобиль</a>
+                <p class="ad_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia hic quasi tempore? Repudiandae reiciendis voluptates deserunt delectus, hic dolore, quibusdam odio repellat minus nihil obcaecati. Architecto, id omnis. Architecto, minima.</p>
+                <p class="ad_author">ООО "АвтодиллерЦентр"</p>
+                <p class="ad_price">1 800 000 ₽</p>
+            </div>
+        </div>
+    </div>
+
+    <form action="" class="form" id="login_form">
+        <h1 class="form_title">Вход</h1>
+        <div class="input_div">
+            <p class="input_name">Почта</p>
+            <input type="text" name="email" class="form_input" required>
+        </div>
+        <div class="input_div">
+            <p class="input_name">Пароль</p>
+            <input type="text" name="password" class="form_input" required>
+        </div>
+        <div class="form_buttons">
+            <button class="form_button" type="submit">Войти</button>
+            <p class="buttons_text">Или</p>
+            <button class="form_button" type="button">Зарегистрироваться</button>
+        </div>
+        <div class="close_form_btn"></div>
+    </form>
+    <form action="" class="form"  id="registration_form">
+        <h1 class="form_title">Регистрация</h1>
+        <div class="input_div">
+            <p class="input_name">Логин</p>
+            <input type="text" name="login" class="form_input" required>
+        </div>
+        <div class="input_div">
+            <p class="input_name">Почта</p>
+            <input type="text" name="email" class="form_input" required>
+        </div>
+        <div class="input_div">
+            <p class="input_name">Пароль</p>
+            <input type="text" name="password" class="form_input" required>
+        </div>
+        <div class="input_div">
+            <p class="input_name">Повторите пароль</p>
+            <input type="text" name="record_password" class="form_input" required>
+        </div>
+        <div class="form_buttons">
+            <button class="form_button" id="btn_open_register" type="submit">Зарегистрироваться</button>
+            <p class="buttons_text">Или</p>
+            <button class="form_button" id="btn_open_login" type="button">Войти</button>
+        </div>
+        <div class="close_form_btn"></div>
+    </form>
+
+    <div class="dark_div"></div>
+    <script src="./scripts/form.js"></script>
+</body>
+</html>
