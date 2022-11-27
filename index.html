@@ -9,8 +9,11 @@
 </head>
 <body>
     <header class="header">
+        <div class="user">
+            <p class="user_name"></p>
+        </div>
         <div class="header_hrefs">
-            <a href="/" class="login_href">Вход и регистрация</a>
+            <a href="/" class="login_and_register_href">Вход и регистрация</a>
             <a href="/" class="add_href">
                 <button class="add_btn">Добавить объявление</button>
             </a>
@@ -39,11 +42,11 @@
             <input type="text" name="password" class="form_input" required>
         </div>
         <div class="form_buttons">
-            <button class="form_button" type="submit">Войти</button>
+            <button class="form_button submit_login" type="submit">Войти</button>
             <p class="buttons_text">Или</p>
-            <button class="form_button" type="button">Зарегистрироваться</button>
+            <button class="form_button register_href" type="button">Зарегистрироваться</button>
         </div>
-        <div class="close_form_btn"></div>
+        <input type="text" name="type_request" value="login" class="hidden_input">
     </form>
     <form action="" class="form"  id="registration_form">
         <h1 class="form_title">Регистрация</h1>
@@ -53,24 +56,23 @@
         </div>
         <div class="input_div">
             <p class="input_name">Почта</p>
-            <input type="text" name="email" class="form_input" required>
+            <input type="email" name="email" class="form_input" required>
         </div>
         <div class="input_div">
             <p class="input_name">Пароль</p>
-            <input type="text" name="password" class="form_input" required>
+            <input type="password" name="password" class="form_input" required>
         </div>
         <div class="input_div">
             <p class="input_name">Повторите пароль</p>
-            <input type="text" name="record_password" class="form_input" required>
+            <input type="password" name="record_password" class="form_input" required>
         </div>
         <div class="form_buttons">
-            <button class="form_button" id="btn_open_register" type="submit">Зарегистрироваться</button>
+            <button class="form_button submit_register" id="btn_open_register" type="submit">Зарегистрироваться</button>
             <p class="buttons_text">Или</p>
-            <button class="form_button" id="btn_open_login" type="button">Войти</button>
+            <button class="form_button login_href" id="btn_open_login" type="button">Войти</button>
         </div>
-        <div class="close_form_btn"></div>
+        <input type="text" name="type_request" value="register" class="hidden_input">
     </form>
-
     <div class="dark_div"></div>
     <script src="./scripts/form.js"></script>
 </body>

@@ -1,44 +1,77 @@
-let hrefLoginForm = document.querySelector('.login_href');
+let loginOrRegisterHref = document.querySelector('.login_and_register_href');
+let loginHref = document.querySelector('.login_href');
+let registrationHref = document.querySelector('.register_href');
+let userName = document.querySelector('.user_name');
 
-let registrationForm = document.getElementById('registration_form');
 let loginForm = document.getElementById('login_form');
+let registrationForm = document.getElementById('registration_form');
+let darkDiv = document.querySelector('.dark_div');
 
-let darkScreen = document.querySelector('.dark_div'); 
-let closeFormBtn = document.querySelector('.close_form_btn');
+let submitLogin = document.querySelector('.submit_login');
+let submitRegister = document.querySelector('.submit_register');
 
-let openRegisterBtn = document.getElementById('btn_open_register');
-let openLoginBtn = document.getElementById('btn_open_login');
-
-hrefLoginForm.addEventListener('click', (event) => {
+loginOrRegisterHref.addEventListener('click', (event) => {
     event.preventDefault();
+    darkDiv.style.display = "block";
     showForm(loginForm);
 });
 
-closeFormBtn.addEventListener('click', (event) => {
+registrationHref.addEventListener('click', (event) => {
     event.preventDefault();
-    closeForm(event.target.parentElement);
-});
-
-openLoginBtn.addEventListener('click', (event) => {
-    closeForm(event.target.parentElement);
+    loginForm.style.display = "none";
     showForm(registrationForm);
-    console.log("Открыть форму Авторизации");
 });
 
-openRegisterBtn.addEventListener('click', (event) => {
-    closeForm(event.target.parentElement);
+loginHref.addEventListener('click', (event) => {
+    event.preventDefault();
+    registrationForm.style.display = "none";
     showForm(loginForm);
-    console.log("Открыть форму Регистрации");
 });
 
-function showForm(form){   
-    darkScreen.style.display = "block";
-    form.style.display = "flex";
-    form.style.left = (window.outerWidth/2) - (form.offsetWidth/2) + "px";
-    form.style.top = (window.outerHeight/2) - (form.offsetHeight/2) + "px";
+darkDiv.addEventListener('click', () => {
+    darkDiv.style.display = "none";
+    loginForm.style.display = "none";
+    registrationForm.style.display = "none";
+});
+
+registrationForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let formData = new FormData(registrationForm);
+    sendRequest(formData, succesAuth);
+});
+
+loginForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let formData = new FormData(loginForm);
+    sendRequest(formData, (sql) => {
+        console.log(sql);
+    });
+});
+
+function showForm(form){
+    form.style.display = "block";
+    form.style.top = (window.innerHeight/2) - (form.offsetHeight/2) + "px";
+    form.style.left = (window.innerWidth/2) - (form.offsetWidth/2) + "px";
 }
 
-function closeForm(form){
-    darkScreen.style.display = "none";
-    form.style.display = "none";
+function succesAuth(user){
+    userName.innerText = user;
+    darkDiv.style.display = "none";
+    loginForm.style.display = "none";
+    registrationForm.style.display = "none";
+    registrationForm.reset();
+    loginForm.reset();
+}
+
+function sendRequest(formData, callback){
+    let XML = new XMLHttpRequest();
+    let answer = null;
+    XML.open('POST', '../server/server.php');
+    XML.setRequestHeader('Content-Disposition', 'application/x-www-form-urlencoded');
+    XML.send(formData);
+    XML.addEventListener('load', () => {
+        if(XML.status == 200){
+            callback(XML.response);
+        }
+    });
 }

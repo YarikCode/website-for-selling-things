@@ -37,16 +37,24 @@
 
 header{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     background-color: rgb(41, 41, 41);
     padding: 10px 150px 10px 150px;
 }
 
-.login_href{
+.login_and_register_href{
     font-family: Inter-Light;
     color: white;
     text-decoration: none;
     font-size: 14px;
+}
+
+.user_name{
+    font-family: Inter-Light;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
 }
 
 .add_btn{
@@ -189,4 +197,8 @@ header{
 .form_input{
     font-family: Inter-Light;
     font-size: 16px;
+}
+
+.hidden_input{
+    display: none;
 }
