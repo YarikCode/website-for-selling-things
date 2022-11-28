@@ -21,23 +21,20 @@ function register($login, $email, $password){
             $_SESSION['username'] = $login;
             echo $_SESSION['username'];
         }
-        else{
-            echo "Ошибка регистрации";
-        }
     }
 }
 
 function login($email, $password){
     $connection = mysqli_connect('localhost', 'root', '', 'website-for-selling-things');
     if($email != null && $password != null){
-        $password = password_hash($password, PASSWORD_BCRYPT);
         $query = "SELECT login, email, password FROM users WHERE email = '$email'";
         $result = mysqli_query($connection, $query);
-        $rows = mysqli_fetch_array($result);
-        print_r($rows);
-        foreach ($rows as $key => $value) {
-            echo $rows['login'];
-        }
+        while($row = mysqli_fetch_array($result)){
+            if(password_verify($password, $row['password'])){
+                $_SESSION['username'] = $row['login'];
+                echo $_SESSION['username'];
+            }
+        }       
     }
 }
 

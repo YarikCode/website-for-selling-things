@@ -202,3 +202,69 @@ header{
 .hidden_input{
     display: none;
 }
+
+.add_form{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-top: 30px;
+    display: none;
+    position: absolute;
+    z-index: 5;
+}
+
+.add_from_title{
+    text-align: center;
+    font-family: Inter-Bold;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.input{
+    width: 100%;
+}
+
+.input_title{
+    font-family: Inter-Light;
+}
+
+#file_input{
+    display: none;
+}
+
+.chose_btn{
+    background-color: rgb(0, 170, 255);
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    font-family: Inter-Light;
+    transition: background-color 0.3s;
+}
+
+.chose_btn:hover{
+    background-color: rgb(52, 107, 133);
+}
+
+.file_div{
+    margin-top: 20px;
+}
+
+.submit_btn{
+    background-color: rgb(24, 238, 106);
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    font-family: Inter-Light;
+    transition: background-color 0.3s;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.submit_btn:hover{
+    background-color: rgb(52, 107, 133);
+}
+
+.form_containter{
+    display: flex;
+    justify-content: center;
+}

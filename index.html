@@ -14,9 +14,7 @@
         </div>
         <div class="header_hrefs">
             <a href="/" class="login_and_register_href">Вход и регистрация</a>
-            <a href="/" class="add_href">
-                <button class="add_btn">Добавить объявление</button>
-            </a>
+            <button class="add_btn">Добавить объявление</button>
         </div>
     </header>
     <div class="ads_container">
@@ -35,11 +33,11 @@
         <h1 class="form_title">Вход</h1>
         <div class="input_div">
             <p class="input_name">Почта</p>
-            <input type="text" name="email" class="form_input" required>
+            <input type="email" name="email" class="form_input" required>
         </div>
         <div class="input_div">
             <p class="input_name">Пароль</p>
-            <input type="text" name="password" class="form_input" required>
+            <input type="password" name="password" class="form_input" required>
         </div>
         <div class="form_buttons">
             <button class="form_button submit_login" type="submit">Войти</button>
@@ -72,6 +70,27 @@
             <button class="form_button login_href" id="btn_open_login" type="button">Войти</button>
         </div>
         <input type="text" name="type_request" value="register" class="hidden_input">
+    </form>
+    <form action="./server/ads.php" class="form" id="add_form" method="POST" enctype="multipart/form-data">
+        <h1 class="add_from_title">Добавление объявления</h1>
+        <div>
+            <p class="input_title">Название</p>
+            <input type="text" class="input" name="ad_name" required>
+        </div>
+        <div>
+            <p class="input_title">Описание</p>
+            <textarea class="input" name="ad_description" rows="10" required></textarea>
+        </div>
+        <div>
+            <p class="input_title">Цена</p>
+            <input type="text" class="input" name="ad_price" required>
+        </div>
+        <div class="file_div">
+            <input type="file" id="file_input" name="ad_file" required>
+            <label for="file_input" class="chose_btn">Выбрать фотографию</label>
+        </div>
+        <button type="submit" class="submit_btn">Опубликовать</button>
+        <input type="text" name="type_request" value="addAd" class="hidden_input">
     </form>
     <div class="dark_div"></div>
     <script src="./scripts/form.js"></script>
