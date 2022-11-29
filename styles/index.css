@@ -22,6 +22,7 @@
 .body{
     position: relative;
     z-index: 1;
+    min-height: 100vh;
 }
 
 .dark_div{
@@ -33,6 +34,7 @@
     top: 0;
     left: 0;
     display: none;
+    min-height: 100vh;
 }
 
 header{

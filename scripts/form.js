@@ -7,7 +7,8 @@ let darkDiv = document.querySelector('.dark_div');
 let addAdBtn = document.querySelector('.add_btn');
 let logoutBtn = document.querySelector('.logout_btn');
 let adsContainer = document.querySelector('.ads_container');
-let errorsContainer = document.querySelector('.errors');
+let errorsRegister = document.getElementById('error_register');
+let errorsLogin = document.getElementById('error_login');
 
 // Формы
 let loginForm = document.getElementById('login_form');
@@ -65,6 +66,10 @@ darkDiv.addEventListener('click', () => {
     registrationForm.style.display = "none";
     addForm.style.display = "none";
     document.body.style.position = "relative";
+    loginForm.reset();
+    registerForm.reset();
+    errorsRegister.innerText = "";
+    errorsLogin.innerText = "";
 });
 
 // Отправка запроса регистрации
@@ -72,10 +77,12 @@ registrationForm.addEventListener('submit', (event) => {
     event.preventDefault();
     if(registrationForm.password.value == registrationForm.record_password.value){
         let formData = new FormData(registrationForm);
-        sendRequest(formData, succesAuth);
+        sendRequest(formData, succesAuth, (error) => {
+            errorsRegister.innerText = error;
+        });
     }
     else{
-        errorsContainer.innerText = 'Пароли не совпадают';
+        errorsRegister.innerText = 'Пароли не совпадают';
     }
 });
 
@@ -83,7 +90,9 @@ registrationForm.addEventListener('submit', (event) => {
 loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
     let formData = new FormData(loginForm);
-    sendRequest(formData, succesAuth);
+    sendRequest(formData, succesAuth, (error) => {
+        errorsLogin.innerText = error;
+    });
 });
 
 // Открыть форму для добавления объявления
@@ -101,8 +110,10 @@ function showForm(form){
 }
 
 // Функцция выводит имя пользователя при успешной авторизации
-function succesAuth(user){
-    userName.innerText = user;
+function succesAuth(){
+    loadUser("type_request=loadLogin", (login) => {
+        userName.innerText = login;
+    });
     darkDiv.style.display = "none";
     loginForm.style.display = "none";
     registrationForm.style.display = "none";
@@ -111,14 +122,21 @@ function succesAuth(user){
 }
 
 // Функцция для отправки запроса
-function sendRequest(formData, callback){
+function sendRequest(formData, callback, failAuth){
     let XML = new XMLHttpRequest();
     XML.open('POST', '../server/user.php');
     XML.setRequestHeader('Content-Disposition', 'application/x-www-form-urlencoded');
     XML.send(formData);
     XML.addEventListener('load', () => {
         if(XML.status == 200){
-            callback(XML.response);
+            if(XML.response == ""){
+                // Успешная авторизация
+                callback();
+            }
+            else{
+                // Ошибки
+                failAuth(XML.response);
+            }
         }
     });
 }

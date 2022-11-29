@@ -18,11 +18,11 @@ function register($login, $email, $password){
     $connection = mysqli_connect('localhost', 'root', '', 'website-for-selling-things');
     if($login != null && $email != null && $password != null){
 
-        $mail_query = "SELECT * FROM `users` WHERE `email` = '$email'";
+        $mail_query = "SELECT COUNT(*) FROM `users` WHERE `email` = '$email'";
         $mail_result = mysqli_query($connection, $mail_query);
         if($mail_result){
-            print_r($mail_result);
-            if($mail_result['num_rows'] == 0){
+            $row = mysqli_fetch_array($mail_result);
+            if($row[0] == 0){
                 $hash_password = password_hash($password, PASSWORD_BCRYPT);
                 $query = "INSERT INTO `users` (`id`, `login`, `password`, `email`) VALUES (NULL, '$login', '$hash_password', '$email')";
                 $result = mysqli_query($connection, $query);
@@ -40,13 +40,24 @@ function register($login, $email, $password){
 function login($email, $password){
     $connection = mysqli_connect('localhost', 'root', '', 'website-for-selling-things');
     if($email != null && $password != null){
-        $query = "SELECT id, login, email, password FROM users WHERE email = '$email'";
-        $result = mysqli_query($connection, $query);
-        while($row = mysqli_fetch_array($result)){
-            if(password_verify($password, $row['password'])){
-                $_SESSION['user'] = ['id' => $row['id'], 'login' => $row['login']];
-                echo $_SESSION['user']['login'];
-            }
+
+        $mail_query = "SELECT COUNT(*) FROM users WHERE email = '$email'";
+        $mail_result = mysqli_query($connection, $mail_query);
+        $mail_row = mysqli_fetch_array($mail_result);
+        if($mail_row[0] != 0){
+            $query = "SELECT id, login, email, password FROM users WHERE email = '$email'";
+            $result = mysqli_query($connection, $query);
+            while($row = mysqli_fetch_array($result)){
+                if(password_verify($password, $row['password'])){
+                    $_SESSION['user'] = ['id' => $row['id'], 'login' => $row['login']];
+                }
+                else{
+                    echo "Неверная почта или пароль";
+                }
+            }  
+        }
+        else{
+            echo "Неверная почта или пароль";
         }       
     }
 }
