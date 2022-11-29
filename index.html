@@ -11,6 +11,7 @@
     <header class="header">
         <div class="user">
             <p class="user_name"></p>
+            <button class="logout_btn">Выйти</button>
         </div>
         <div class="header_hrefs">
             <a href="/" class="login_and_register_href">Вход и регистрация</a>
@@ -18,17 +19,8 @@
         </div>
     </header>
     <div class="ads_container">
-        <div class="ad_div">
-            <img src="./server/images/avto.jpeg" class="ad_image">
-            <div class="ad_text_div">
-                <a href="/" class="ad_title">Автомобиль</a>
-                <p class="ad_description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia hic quasi tempore? Repudiandae reiciendis voluptates deserunt delectus, hic dolore, quibusdam odio repellat minus nihil obcaecati. Architecto, id omnis. Architecto, minima.</p>
-                <p class="ad_author">ООО "АвтодиллерЦентр"</p>
-                <p class="ad_price">1 800 000 ₽</p>
-            </div>
-        </div>
+        
     </div>
-
     <form action="" class="form" id="login_form">
         <h1 class="form_title">Вход</h1>
         <div class="input_div">
@@ -64,6 +56,7 @@
             <p class="input_name">Повторите пароль</p>
             <input type="password" name="record_password" class="form_input" required>
         </div>
+        <p class="errors"></p>
         <div class="form_buttons">
             <button class="form_button submit_register" id="btn_open_register" type="submit">Зарегистрироваться</button>
             <p class="buttons_text">Или</p>
