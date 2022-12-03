@@ -20,7 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Загрузить имя пользователя
     loadUser("type_request=loadLogin", (login) => {
-        userName.innerText = login;
+        if(login == ""){
+            addAdBtn.style.display = "none";
+            logoutBtn.style.display = "none";
+        }
+        else{
+            userName.innerText = login;
+        }
     });
 
     // Загрузить объявления
@@ -117,6 +123,8 @@ function succesAuth(){
     darkDiv.style.display = "none";
     loginForm.style.display = "none";
     registrationForm.style.display = "none";
+    addAdBtn.style.display = "flex";
+    logoutBtn.style.display = "block";
     registrationForm.reset();
     loginForm.reset();
 }
@@ -162,6 +170,8 @@ function logout(data){
     XML.open('POST', '../server/user.php');
     XML.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     XML.send(data);
+    addAdBtn.style.display = "none";
+    logoutBtn.style.display = "none";
 }
 
 // Функция загрузки объявлений

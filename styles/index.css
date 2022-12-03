@@ -43,6 +43,7 @@ header{
     align-items: center;
     background-color: rgb(41, 41, 41);
     padding: 10px 150px 10px 150px;
+    min-height: 51px;
 }
 
 .login_and_register_href{
@@ -290,4 +291,9 @@ header{
     font-family: Inter-Light;
     font-size: 16px;
     color: red;
+}
+
+.header_hrefs{
+    display: flex;
+    align-items: center;
 }

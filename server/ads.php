@@ -8,7 +8,14 @@ if(isset($_POST['ad_price'])) $ad_price = $_POST['ad_price'];
 if(isset($_FILES['ad_file'])) $ad_file = $_FILES['ad_file'];
 
 if(isset($_POST['type_request'])){
-    if($_POST['type_request'] == 'addAd') addAd($ad_name, $ad_description, $ad_price, $ad_file);
+    if($_POST['type_request'] == 'addAd'){
+       if(isset($_SESSION['user'])){
+            addAd($ad_name, $ad_description, $ad_price, $ad_file);
+       }
+       else{
+            echo "Для добавления обьявления необходимо авторизоваться";
+       }
+    }
     if($_POST['type_request'] == 'loadAds') loadAds();
 }
 
