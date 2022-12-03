@@ -40,25 +40,20 @@ function register($login, $email, $password){
 function login($email, $password){
     $connection = mysqli_connect('localhost', 'root', '', 'website-for-selling-things');
     if($email != null && $password != null){
+        $query = "SELECT id, login, email, password FROM users WHERE email = '$email'";
+        $result = mysqli_query($connection, $query);
 
-        $mail_query = "SELECT COUNT(*) FROM users WHERE email = '$email'";
-        $mail_result = mysqli_query($connection, $mail_query);
-        $mail_row = mysqli_fetch_array($mail_result);
-        if($mail_row[0] != 0){
-            $query = "SELECT id, login, email, password FROM users WHERE email = '$email'";
-            $result = mysqli_query($connection, $query);
-            while($row = mysqli_fetch_array($result)){
-                if(password_verify($password, $row['password'])){
-                    $_SESSION['user'] = ['id' => $row['id'], 'login' => $row['login']];
-                }
-                else{
-                    echo "Неверная почта или пароль";
-                }
-            }  
+        $row = mysqli_fetch_array($result);
+
+        if (!$row) {
+            echo "Неверный логин или пароль";
+        }
+        if(password_verify($password, $row['password'])){
+            $_SESSION['user'] = ['id' => $row['id'], 'login' => $row['login']];
         }
         else{
-            echo "Неверная почта или пароль";
-        }       
+            echo "Неверный логин или пароль";
+        }
     }
 }
 

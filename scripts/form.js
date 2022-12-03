@@ -129,8 +129,10 @@ function sendRequest(formData, callback, failAuth){
     XML.send(formData);
     XML.addEventListener('load', () => {
         if(XML.status == 200){
+            console.log(XML.response);
             if(XML.response == ""){
                 // Успешная авторизация
+                
                 callback();
             }
             else{
