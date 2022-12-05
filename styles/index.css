@@ -19,10 +19,11 @@
     box-sizing: border-box;
 }
 
-.body{
+body{
     position: relative;
     z-index: 1;
     min-height: 100vh;
+    min-width: 100vw;
 }
 
 .dark_div{
@@ -44,6 +45,37 @@ header{
     background-color: rgb(41, 41, 41);
     padding: 10px 150px 10px 150px;
     min-height: 51px;
+}
+
+footer{
+    background-color: rgb(41, 41, 41);
+    padding: 10px 150px 10px 150px;
+    min-height: 51px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer_buttons{
+    display: flex;
+}
+
+.footer_button{
+    margin: 0px 10px 0px 10px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgba(0, 170, 255, 0);
+    border: none;
+}
+
+.footer_btn_href{
+    font-family: Inter-Light;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.now_page{
+    border-bottom: 2px solid rgb(0, 170, 255);
 }
 
 .login_and_register_href{

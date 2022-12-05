@@ -20,10 +20,10 @@ if(isset($_POST['type_request'])){
 }
 
 function addAd($name, $desc, $price, $file){
-    $file_name = md5(microtime() . rand(0, 9999)) . '.' . end(explode('.', $file['name'])); 
+    $file_name = md5(microtime() . rand(0, 9999)) . '.' . end(explode('.', $file['name']));
     $user_id = $_SESSION['user']['id'];
     $price = number_format($price, 0, '.', ' ');
-    $connection = mysqli_connect('localhost', 'root', '', 'website-for-selling-things'); 
+    $connection = mysqli_connect('localhost', 'root', '', 'website-for-selling-things');
     $query = "INSERT INTO `ads` (`id`, `name`, `description`, `price`, `file`, `user_id`) VALUES (NULL, '$name', '$desc', '$price ₽', '$file_name', '$user_id')";
     $result = mysqli_query($connection, $query);
     if($result){
