@@ -9,11 +9,20 @@ let logoutBtn = document.querySelector('.logout_btn');
 let adsContainer = document.querySelector('.ads_container');
 let errorsRegister = document.getElementById('error_register');
 let errorsLogin = document.getElementById('error_login');
+let footerBtns = document.querySelector('.footer_buttons');
 
 // Формы
 let loginForm = document.getElementById('login_form');
 let registrationForm = document.getElementById('registration_form');
 let addForm = document.getElementById('add_form');
+
+// Переключение страниц
+document.addEventListener('click', (event) => {
+    if(event.target.classList.contains('footer_button')){
+        console.log('Переключение' + event.target.innerText);
+        loadAds(event.target.innerText);
+    }
+});
 
 // Загрузка имени пользователя
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,12 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Загрузить объявления
-    loadAds("type_request=loadAds", (ads) => {
-        let adsArray = JSON.parse(ads);
-        adsArray.forEach(element => {
-            showAd(element['name'], element['description'], element['author'], element['price'], element['file']);
-        });
-    })
+    loadAds(1);
+    
 });
 
 // Обработка выхода
@@ -175,52 +180,23 @@ function logout(data){
 }
 
 // Функция загрузки объявлений
-function loadAds(data, callback){
+function loadAds(page){
     let XML = new XMLHttpRequest();
-    XML.open('POST', '../server/ads.php');
+    XML.open('GET', './server/ads.php?type_request=loadAds&page=' + page);
     XML.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    XML.send(data);
+    XML.responseType = 'json';
+    XML.send();
     XML.addEventListener('load', () => {
         if(XML.status == 200){
-            callback(XML.response);
+            console.log(XML.response);
+            footerBtns.innerHTML = "";
+            adsContainer.innerHTML = "";
+            for(let i = 0; i < XML.response.content.length; i++){
+                adsContainer.innerHTML += XML.response.content[i];
+            }
+            for(let i = 0; i < XML.response.buttons.length; i++){
+                footerBtns.innerHTML += XML.response.buttons[i];
+            }
         }
     });
-}
-
-// Функция отрисовки объявлений
-function showAd($name, $description, $author, $price, $file){
-    let adDiv = document.createElement('div');
-    adDiv.classList.add('ad_div');
-
-    let adImage = document.createElement('img');
-    adImage.classList.add('ad_image');
-    adImage.setAttribute('src', "./server/images/" + $file);
-    adDiv.appendChild(adImage);
-
-    let adTextDiv = document.createElement('div');
-    adTextDiv.classList.add('ad_text_div');
-    adDiv.appendChild(adTextDiv);
-
-    let name = document.createElement('a');
-    name.innerText = $name;
-    name.setAttribute("href", "/");
-    name.classList.add('ad_title');
-    adTextDiv.appendChild(name);
-
-    let description = document.createElement('p');
-    description.innerText = $description;
-    description.classList.add('ad_description');
-    adTextDiv.appendChild(description);
-
-    let author = document.createElement('p');
-    author.innerText = $author;
-    author.classList.add('ad_author');
-    adTextDiv.appendChild(author);
-
-    let price = document.createElement('p');
-    price.innerText = $price;
-    price.classList.add('ad_price');
-    adTextDiv.appendChild(price);
-
-    adsContainer.appendChild(adDiv);
 }

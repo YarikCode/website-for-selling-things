@@ -24,6 +24,7 @@ body{
     z-index: 1;
     min-height: 100vh;
     min-width: 100vw;
+    overflow-x: hidden;
 }
 
 .dark_div{
@@ -56,6 +57,10 @@ footer{
     align-items: center;
 }
 
+.ads_container{
+    min-height: calc(100vh - 104px);
+}
+
 .footer_buttons{
     display: flex;
 }
@@ -65,9 +70,6 @@ footer{
     padding: 5px 10px 5px 10px;
     background-color: rgba(0, 170, 255, 0);
     border: none;
-}
-
-.footer_btn_href{
     font-family: Inter-Light;
     color: white;
     text-decoration: none;
