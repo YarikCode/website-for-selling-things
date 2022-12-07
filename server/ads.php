@@ -49,7 +49,12 @@ function loadAds($page){
     $content = [];
 
     for($i = 1; $i <= $pages; $i++){
-        $buttons[] = "<button class='footer_button'>". $i ."</button>";
+        if($i == $page){
+            $buttons[] = "<button class='footer_button now_page'>". $i ."</button>";
+        }
+        else{
+            $buttons[] = "<button class='footer_button'>". $i ."</button>";
+        }
     }
 
     $query = "SELECT ads.name, ads.description, users.login, ads.price, ads.file FROM ads INNER JOIN users ON ads.user_id = users.id LIMIT " . ($page - 1)*15 . ", 15;";

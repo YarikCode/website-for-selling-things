@@ -16,10 +16,14 @@ let loginForm = document.getElementById('login_form');
 let registrationForm = document.getElementById('registration_form');
 let addForm = document.getElementById('add_form');
 
+let previous_page = null;
+let now_page = null;
+
 // Переключение страниц
 document.addEventListener('click', (event) => {
     if(event.target.classList.contains('footer_button')){
         console.log('Переключение' + event.target.innerText);
+        event.target.classList.add('now_page');
         loadAds(event.target.innerText);
     }
 });
